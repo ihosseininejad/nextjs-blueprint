@@ -1,0 +1,89 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "../tailwind/components.css";
+@import "../tailwind/components/site-shell.css";
+@import "tailwindcss/utilities";
+
+@layer base {
+  :root {
+    --color-primary: theme("colors.primary");
+    --color-primary-focus: theme("colors.primary-focus");
+    --color-secondary: theme("colors.secondary");
+    --color-accent: theme("colors.accent");
+    --color-neutral: theme("colors.neutral");
+    --color-info: theme("colors.info");
+    --color-success: theme("colors.success");
+    --color-warning: theme("colors.warning");
+    --color-error: theme("colors.error");
+    --color-gradient-first: theme("colors.gradient-first");
+    --color-gradient-second: theme("colors.gradient-second");
+    --color-surface: theme("colors.base-100");
+    --color-surface-raised: theme("colors.base-75");
+    --color-content: theme("colors.base-content");
+    color-scheme: dark;
+  }
+
+  html {
+    font-family: var(--font-vazirmatn), Tahoma, Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    font-size: 1rem;
+    line-height: 1.8;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  button, input, textarea, select {
+    font: inherit;
+  }
+
+  button, a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-info);
+    outline-offset: 4px;
+  }
+
+  ::selection {
+    background: var(--color-primary-focus);
+    color: theme("colors.white");
+  }
+}
+
+.gradient {
+  @apply bg-gradient-to-r from-gradient-first to-gradient-second text-transparent bg-clip-text;
+}
+
+.gradient-reverse {
+  @apply bg-gradient-to-r from-gradient-second to-gradient-first text-transparent bg-clip-text;
+}
+
+.animated-icon {
+  & > * { @apply transition-all; }
+  &:hover {
+    @apply text-white;
+    & > * { @apply -translate-x-2; }
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
